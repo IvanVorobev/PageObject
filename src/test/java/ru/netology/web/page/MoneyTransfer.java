@@ -8,35 +8,35 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MoneyTransfer {
-    private static SelenideElement transferPage = $(withText("Пополнение карты"));
-    private static SelenideElement transferAmmount = $("[data-test-id=amount] input");
-    private static SelenideElement numberCardfrom = $("[data-test-id=from] input");
-    private static SelenideElement numberCardto = $("[data-test-id=to] input");
-    private static SelenideElement transferButton = $(byText("Пополнить"));
-    private static SelenideElement cancelButton = $(byText("Отмена"));
-    private static SelenideElement errorMessage = $(withText("Ошибка"));
+    private SelenideElement transferPage = $(withText("Пополнение карты"));
+    private SelenideElement transferAmmount = $("[data-test-id=amount] input");
+    private SelenideElement numberCardfrom = $("[data-test-id=from] input");
+    private SelenideElement numberCardto = $("[data-test-id=to] input");
+    private SelenideElement transferButton = $(byText("Пополнить"));
+    private SelenideElement cancelButton = $(byText("Отмена"));
+    private SelenideElement errorMessage = $(withText("Ошибка"));
 
-    public static void MoneyTransferVisible() {
+    public void moneyTransferVisible() {
         transferPage.shouldBe(Condition.visible);
     }
 
-    public static void setTransferAmmount(int sum) {
+    public void setTransferAmmount(int sum) {
         transferAmmount.setValue(String.valueOf(sum));
     }
 
-    public static void setNumberCardfrom(String numberCard) {
+    public void setNumberCardfrom(String numberCard) {
         numberCardfrom.setValue(numberCard);
     }
 
-    public static void doTransfer() {
+    public void doTransfer() {
         transferButton.click();
     }
 
-    public static void errorTransfer() {
+    public void errorTransfer() {
         errorMessage.shouldBe(Condition.visible);
     }
 
-    public static DashboardPage CancelTransfer() {
+    public DashboardPage CancelTransfer() {
         cancelButton.click();
         return new DashboardPage();
     }
